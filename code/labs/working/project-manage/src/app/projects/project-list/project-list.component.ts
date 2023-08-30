@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../shared/project.model';
 
 @Component({
@@ -9,6 +9,26 @@ import { Project } from '../shared/project.model';
 export class ProjectListComponent implements OnInit {
   @Input()
   projects: Project[] = [];
+
+  @Output()
+  saveListItem = new EventEmitter<any>();
+
+  editingProject: Project; 
+
+  onEdit(event: any){
+    this.editingProject = event.editingProject;
+    console.log(this.editingProject);
+  }
+
+  onCancel(){
+    this.editingProject = null;
+  }
+
+  onSave(event: any){
+    this.editingProject = null;
+    this.saveListItem.emit({ item: event.project });
+  }
+
   constructor() { }
 
   ngOnInit() {

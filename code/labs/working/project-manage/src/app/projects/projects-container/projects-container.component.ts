@@ -8,11 +8,17 @@ import { Project } from '../shared/project.model';
   styleUrls: ['./projects-container.component.css']
 })
 export class ProjectsContainerComponent implements OnInit {
-
   projects: Project[] = PROJECTS;
-  constructor() { }
 
-  ngOnInit() {
+  constructor() { }
+  ngOnInit() { }
+
+  onSaveListItem(event: any){
+    const project: Project = event.item;
+    const index = this.projects.findIndex(
+      element => element.id === project.id
+    );
+    this.projects[index] = project;
   }
 
 }
