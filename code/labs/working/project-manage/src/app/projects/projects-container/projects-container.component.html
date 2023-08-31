@@ -2,4 +2,19 @@
 
 <!-- <pre> {{projects | json}} </pre> -->
 
+<div *ngIf="loading" class="center-page">
+    <span class="spinner primary"> </span>
+    <p>Loading . . . </p>
+</div>
+
+<div class="row">
+    <div *ngIf="errorMessage" class="card large error">
+        <section>
+            <p>
+                <span class="incon-alert inverse "></span> {{errorMessage}}
+            </p>
+        </section>
+    </div>
+</div>
+
 <app-project-list [projects]="projects" (saveListItem)="onSaveListItem($event)"> </app-project-list>
